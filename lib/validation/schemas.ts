@@ -26,7 +26,7 @@ export const LocationCSVRowSchema = z.object({
   'National Code':                             z.string().optional().default(''),
   'Nation Name':                               z.string().optional().default(''),
   'Lat.':                                      z.string().optional().default(''),
-  'Long. ':                                    z.string().optional().default(''),
+  'Long.':                                     z.string().optional().default(''),
   'Alt.':                                      z.string().optional().default(''),
 })
 

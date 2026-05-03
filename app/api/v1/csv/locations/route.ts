@@ -49,7 +49,7 @@ export async function POST(request: Request) {
       national_code:     d['National Code'],
       nation_name:       d['Nation Name'],
       lat:               toFloat(d['Lat.']),
-      lng:               toFloat(d['Long. ']),
+      lng:               toFloat(d['Long.']),
       alt:               toFloat(d['Alt.']),
     })
   }
