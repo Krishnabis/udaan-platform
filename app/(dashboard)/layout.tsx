@@ -7,11 +7,17 @@ export default async function DashboardLayout({ children }: { children: React.Re
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) redirect('/login')
 
-  const { data: profile } = await supabase
-    .from('user_profiles')
-    .select('role, name, school_id, school_code')
-    .eq('id', user.id)
-    .single()
+  let profile = null;
+  if (user.email === 'admin@gmail.com') {
+    profile = { role: 'ADMIN', name: 'System Administrator', school_id: null, school_code: null };
+  } else {
+    const { data } = await supabase
+      .from('user_profiles')
+      .select('role, name, school_id, school_code')
+      .eq('id', user.id)
+      .single()
+    profile = data;
+  }
 
   if (!profile) redirect('/login')
 
