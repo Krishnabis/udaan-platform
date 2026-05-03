@@ -51,7 +51,7 @@ export async function POST(request: Request) {
     valid.push({
       school_code:       d['School Code'],
       school_name:       d['School Name'],
-      locality_code:     localityCode || null,
+      locality_code:     locationId ? localityCode : null,
       location_id:       locationId,
       block_code:        d['Block Code'],
       block_name:        d['Block Name'],
