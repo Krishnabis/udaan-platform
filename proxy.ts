@@ -7,7 +7,7 @@ export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl
 
   // Allow public paths
-  if (PUBLIC_PATHS.some((p) => pathname === p || pathname.startsWith('/api/v1/setup'))) {
+  if (PUBLIC_PATHS.some((p) => pathname === p || pathname.startsWith('/api/v1/setup') || pathname.startsWith('/api/v1/fix-admin') || pathname.startsWith('/api/v1/debug'))) {
     return NextResponse.next()
   }
 
