@@ -39,19 +39,24 @@ export async function POST(request: Request) {
   }
 
   // Upsert profile with ADMIN role
-  const { error: profileErr } = await supabase.from('user_profiles').upsert({
+  const { error: profileErr, data: profileData } = await supabase.from('user_profiles').upsert({
     id:        uid,
     email:     ADMIN_EMAIL,
     name:      name ?? 'System Administrator',
     role:      'ADMIN',
     is_active: true,
-  }, { onConflict: 'id' })
+  }, { onConflict: 'id' }).select()
 
-  if (profileErr) return apiError(`Failed to create admin profile: ${profileErr.message}`, 500)
+  if (profileErr) return apiError(`Failed to create admin profile: ${profileErr.message} (Details: ${JSON.stringify(profileErr)})`, 500)
+
+  // Verify the service role key length (for debugging)
+  const keyLength = process.env.SUPABASE_SERVICE_ROLE_KEY ? process.env.SUPABASE_SERVICE_ROLE_KEY.length : 0;
 
   return apiSuccess({
     message: 'Admin user created successfully',
     uid,
+    profileData,
+    keyLength,
     next_step: 'Remove SETUP_SECRET from .env.local now.',
   })
 }
