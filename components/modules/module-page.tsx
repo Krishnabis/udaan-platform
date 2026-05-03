@@ -12,10 +12,11 @@ interface ModulePageProps<T extends { id: string }> {
   columns:    Column<T>[]
   searchPlaceholder?: string
   adminOnly?: boolean
+  onEdit?: (row: T) => void
 }
 
 export function ModulePage<T extends { id: string }>({
-  title, icon, apiPath, csvPath, columns, searchPlaceholder, adminOnly
+  title, icon, apiPath, csvPath, columns, searchPlaceholder, adminOnly, onEdit
 }: ModulePageProps<T>) {
   const [data, setData]       = useState<T[]>([])
   const [total, setTotal]     = useState(0)
@@ -160,7 +161,15 @@ export function ModulePage<T extends { id: string }>({
                             {getCellValue(row, col)}
                           </td>
                         ))}
-                        <td className="px-4 py-3 text-right">
+                        <td className="px-4 py-3 text-right space-x-3">
+                          {onEdit && (
+                            <button
+                              id={`edit-${row.id}`}
+                              onClick={() => onEdit(row)}
+                              className="text-blue-500 hover:text-blue-700 text-xs font-medium transition-colors">
+                              ✏️ Edit
+                            </button>
+                          )}
                           <button
                             id={`delete-${row.id}`}
                             onClick={() => handleDelete(row.id)}
