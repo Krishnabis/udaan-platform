@@ -15,7 +15,7 @@ export default async function DashboardLayout({ children }: { children: React.Re
       .from('user_profiles')
       .select('role, name, school_id, school_code')
       .eq('id', user.id)
-      .single()
+      .maybeSingle()
     profile = data;
   }
 

@@ -117,7 +117,7 @@ CREATE POLICY "students_delete" ON students
 -- ============================================================
 DROP POLICY IF EXISTS "profiles_select_own" ON user_profiles;
 CREATE POLICY "profiles_select_own" ON user_profiles
-  FOR SELECT USING (id = auth.uid() OR is_admin());
+  FOR SELECT USING (id = auth.uid());
 
 DROP POLICY IF EXISTS "profiles_insert" ON user_profiles;
 CREATE POLICY "profiles_insert" ON user_profiles

@@ -24,7 +24,7 @@ export default function LoginPage() {
     if (email.trim() === 'admin@gmail.com') {
       role = 'ADMIN'
     } else {
-      const { data: profile } = await supabase.from('user_profiles').select('role').eq('id', data.user.id).single()
+      const { data: profile } = await supabase.from('user_profiles').select('role').eq('id', data.user.id).maybeSingle()
       if (profile) role = profile.role
     }
 
