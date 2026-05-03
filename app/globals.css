@@ -1,0 +1,75 @@
+@import "tailwindcss";
+
+@theme {
+  --color-navy-900: #0a1628;
+  --color-navy-800: #0f2040;
+  --color-navy-700: #163059;
+  --color-navy-600: #1e4080;
+  --color-navy-500: #2557a7;
+  --color-saffron-500: #f97316;
+  --color-saffron-400: #fb923c;
+  --color-gov-green: #15803d;
+  --color-gov-green-light: #22c55e;
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  font-family: var(--font-sans);
+  background: #f8fafc;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: #f1f5f9; }
+::-webkit-scrollbar-thumb { background: #94a3b8; border-radius: 3px; }
+
+/* Card hover lift */
+.card-hover {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+}
+
+/* Animated gradient text */
+.gradient-text {
+  background: linear-gradient(90deg, #f97316, #eab308, #22c55e);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Shimmer loading */
+@keyframes shimmer {
+  0%   { background-position: -1000px 0; }
+  100% { background-position:  1000px 0; }
+}
+.shimmer {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 1000px 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* Sidebar active */
+.sidebar-active {
+  border-left: 3px solid #2563eb; /* blue-600 */
+}
+
+/* Table row hover */
+.table-row-hover:hover { background: #f0f9ff; }
+
+/* Badge styles */
+.badge-green  { background: #dcfce7; color: #166534; }
+.badge-blue   { background: #dbeafe; color: #1e40af; }
+.badge-orange { background: #ffedd5; color: #9a3412; }
+.badge-red    { background: #fee2e2; color: #991b1b; }
+.badge-gray   { background: #f1f5f9; color: #475569; }
+
+/* Print styles for certificate */
+@media print {
+  .no-print { display: none !important; }
+  .print-only { display: block !important; }
+}
